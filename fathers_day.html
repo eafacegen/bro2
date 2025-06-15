@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Father's Day</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .message {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            font-size: 4em;
+            text-align: center;
+            text-shadow: 0 0 10px #fff,
+                         0 0 20px #fff,
+                         0 0 30px #fff,
+                         0 0 40px #ff00de,
+                         0 0 70px #ff00de,
+                         0 0 80px #ff00de,
+                         0 0 100px #ff00de;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #fff,
+                            0 0 20px #fff,
+                            0 0 30px #fff,
+                            0 0 40px #ff00de,
+                            0 0 70px #ff00de,
+                            0 0 80px #ff00de,
+                            0 0 100px #ff00de;
+            }
+            to {
+                text-shadow: 0 0 20px #fff,
+                            0 0 30px #fff,
+                            0 0 40px #ff00de,
+                            0 0 70px #ff00de,
+                            0 0 80px #ff00de,
+                            0 0 100px #ff00de,
+                            0 0 150px #ff00de;
+            }
+        }
+
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            animation: firework 2s ease-out infinite;
+        }
+
+        @keyframes firework {
+            0% {
+                transform: translate(var(--x), var(--y));
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) scale(20);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="message">Happy Father's Day</div>
+
+    <script>
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            
+            // Random position
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            
+            // Random color
+            const hue = Math.random() * 360;
+            firework.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
+            
+            // Set position
+            firework.style.setProperty('--x', `${x}px`);
+            firework.style.setProperty('--y', `${y}px`);
+            
+            document.body.appendChild(firework);
+            
+            // Remove firework after animation
+            setTimeout(() => {
+                firework.remove();
+            }, 2000);
+        }
+
+        // Create fireworks continuously
+        setInterval(createFirework, 300);
+    </script>
+</body>
+</html> 
